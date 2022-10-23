@@ -1,13 +1,12 @@
-import {Controller, Get, Post, Body} from "@nestjs/common";
+import {Controller, Get, Post, Body, Param, Delete} from "@nestjs/common";
+import { ObjectId } from "mongoose";
 import { CreateTrackDto } from "./dto/create-track.dto";
 import { TrackService } from "./track.service";
 
 @Controller('/tracks')
 
 export class TrackController {
-    constructor(private trackService: TrackService) {
-
-    }
+    constructor(private trackService: TrackService) {}
 
     @Post()
     create(@Body() dto: CreateTrackDto) {
@@ -16,14 +15,16 @@ export class TrackController {
 
     @Get()
     getAll() {
-        return "Work"
+        return this.trackService.getAll();
     }
 
-    getOne() {
-
+    @Get(':id')
+    getOne(@Param('id') id: ObjectId) {
+        return this.trackService.getOne(id);
     }
 
-    deleteOne() {
-        
+    @Delete(':id')
+    delete(@Param('id') id: ObjectId) {
+        return this.trackService.delete(id);
     }
 }

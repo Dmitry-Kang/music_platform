@@ -8,9 +8,6 @@ export type CommentDocument = Comment & Document;
 export class Comment {
 
   @Prop()
-  track_id: number;
-
-  @Prop()
   username: string;
 
   @Prop()
