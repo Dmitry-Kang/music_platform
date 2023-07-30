@@ -1,5 +1,6 @@
 import { Container } from "@mui/material";
 import Navbar from "../components/Navbar";
+import Player from "../components/Player";
 
 const MainLayout: React.FC = ({children}) => {
     return (
@@ -8,7 +9,7 @@ const MainLayout: React.FC = ({children}) => {
             <Container style={{margin: '90px 0'}}>
                 {children}
             </Container>
-            
+            <Player/>
         </>
     )
 }
