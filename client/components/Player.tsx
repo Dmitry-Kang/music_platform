@@ -6,6 +6,7 @@ import {ITrack} from "../types/track";
 import TrackProgress from "./TrackProgress";
 import {useTypedSelector} from "../hooks/useTypedSelector";
 import {useActions} from "../hooks/useActions";
+import config from '../config';
 
 let audio;
 
@@ -24,7 +25,7 @@ const Player = () => {
 
     const setAudio = () => {
         if (active) {
-            audio.src = 'http://localhost:5000/' + active.audio
+            audio.src = config.server + '/' + active.audio
             audio.volume = volume / 100
             audio.onloadedmetadata = () => {
                 setDuration(Math.ceil(audio.duration))

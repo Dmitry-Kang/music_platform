@@ -6,6 +6,7 @@ import FileUpload from "../../components/FileUpload";
 import {useInput} from "../../hooks/useInput";
 import axios from "axios";
 import {useRouter} from "next/router";
+import config from '../../config';
 
 const Create = () => {
     const [activeStep, setActiveStep] = useState(0)
@@ -26,7 +27,7 @@ const Create = () => {
             formData.append('artist', artist.value)
             formData.append('picture', picture)
             formData.append('audio', audio)
-            axios.post('http://localhost:5000/tracks', formData)
+            axios.post(config.server + '/tracks', formData)
                 .then(resp => router.push('/tracks'))
                 .catch(e => console.log(e))
         }

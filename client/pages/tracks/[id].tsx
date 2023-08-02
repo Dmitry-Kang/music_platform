@@ -6,6 +6,8 @@ import {useRouter} from "next/router";
 import {GetServerSideProps} from "next";
 import axios from "axios";
 import {useInput} from "../../hooks/useInput";
+import config from '../../config';
+
 
 const TrackPage = ({serverTrack}) => {
     const [track, setTrack] = useState<ITrack>(serverTrack)
@@ -15,7 +17,7 @@ const TrackPage = ({serverTrack}) => {
 
     const addComment = async () => {
         try {
-            const response = await axios.post('http://localhost:5000/tracks/comment', {
+            const response = await axios.post(config.server + '/tracks/comment', {
                 username: username.value,
                 text: text.value,
                 trackId: track._id
@@ -39,7 +41,7 @@ const TrackPage = ({serverTrack}) => {
                 К списку
             </Button>
             <Grid container style={{margin: '20px 0'}}>
-                <img src={'http://localhost:5000/' + track.picture} width={200} height={200}/>
+                <img src={config.server + '/' + track.picture} width={200} height={200}/>
                 <div style={{marginLeft: 30}}>
                     <h1>Название трека - {track.name}</h1>
                     <h1>Исполнитель - {track.artist}</h1>
@@ -80,7 +82,7 @@ const TrackPage = ({serverTrack}) => {
 export default TrackPage;
 
 export const getServerSideProps: GetServerSideProps = async ({params}) => {
-    const response = await axios.get('http://localhost:5000/tracks/' + params.id)
+    const response = await axios.get(config.server + '/tracks/' + params.id)
     return {
         props: {
             serverTrack: response.data
