@@ -1,6 +1,5 @@
-
-import { Button } from "@mui/material";
-import React from "react";
+import React from 'react';
+import {Button} from "@material-ui/core";
 import Navbar from "../components/Navbar";
 import MainLayout from "../layouts/MainLayout";
 
@@ -9,11 +8,10 @@ const Index = () => {
         <>
             <MainLayout>
                 <div className="center">
-                    <h1>Главная страница</h1>
-                    <h3>Здесь собраны лучшие треки!</h3> 
+                    <h1>Добро пожаловать!</h1>
+                    <h3>Здесь собраны лучшие треки!</h3>
                 </div>
             </MainLayout>
-            
 
             <style jsx>
                 {`
@@ -23,7 +21,6 @@ const Index = () => {
                         flex-direction: column;
                         align-items: center;
                         justify-content: center;
-                    }
                 `}
             </style>
         </>

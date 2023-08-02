@@ -1,11 +1,11 @@
-import { Pause, PlayArrow, VolumeUp } from "@mui/icons-material";
-import { Grid, IconButton } from "@mui/material";
+import React, {useEffect} from 'react';
+import {Pause, PlayArrow, VolumeUp} from "@material-ui/icons";
+import {Grid, IconButton} from "@material-ui/core";
 import styles from '../styles/Player.module.scss'
+import {ITrack} from "../types/track";
 import TrackProgress from "./TrackProgress";
-import { ITrack } from "../types/track";
-import { useTypedSelector } from "../hooks/useTypedSelector";
-import { useActions } from "../hooks/useActions";
-import { useEffect } from "react";
+import {useTypedSelector} from "../hooks/useTypedSelector";
+import {useActions} from "../hooks/useActions";
 
 let audio;
 
@@ -24,13 +24,13 @@ const Player = () => {
 
     const setAudio = () => {
         if (active) {
-            audio.src = active.audio
+            audio.src = 'http://localhost:5000/' + active.audio
             audio.volume = volume / 100
             audio.onloadedmetadata = () => {
                 setDuration(Math.ceil(audio.duration))
             }
             audio.ontimeupdate = () => {
-                setDuration(Math.ceil(audio.currentTime))
+                setCurrentTime(Math.ceil(audio.currentTime))
             }
         }
     }
@@ -62,8 +62,8 @@ const Player = () => {
         <div className={styles.player}>
             <IconButton onClick={play}>
                 {pause
-                    ? <PlayArrow />
-                    : <Pause />
+                    ? <PlayArrow/>
+                    : <Pause/>
                 }
             </IconButton>
             <Grid container direction="column" style={{width: 200, margin: '0 20px'}}>
@@ -74,7 +74,7 @@ const Player = () => {
             <VolumeUp style={{marginLeft: 'auto'}}/>
             <TrackProgress left={volume} right={100} onChange={changeVolume}/>
         </div>
-    )
-}
+    );
+};
 
 export default Player;
